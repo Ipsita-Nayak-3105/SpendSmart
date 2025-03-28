@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev --turbopack",
+    "dev": "next dev",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
@@ -11,6 +11,7 @@
     "postinstall": "prisma generate"
   },
   "dependencies": {
+    "@arcjet/nest": "^1.0.0-beta.5",
     "@arcjet/next": "^1.0.0-alpha.34",
     "@clerk/nextjs": "^6.12.11",
     "@google/generative-ai": "^0.21.0",
@@ -29,10 +30,11 @@
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "date-fns": "^4.1.0",
+    "dotenv": "^16.4.7",
     "eslint-plugin-react-hooks": "^5.2.0-canary-4280563b-20250326",
     "inngest": "^3.34.1",
     "lucide-react": "^0.462.0",
-    "next": "15.0.3",
+    "next": "^15.2.4",
     "next-themes": "^0.4.3",
     "prettier": "^3.5.3",
     "react": "^19.0.0",
