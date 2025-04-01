@@ -95,30 +95,21 @@ export async function createTransaction(data) {
 
     return { success: true, data: serializeAmount(transaction) };
   } catch (error) {
-    throw new Error(error.message);
+    console.error('Error creating transaction:', error);
+    return { success: false, error: error.message };
   }
 }
 
 export async function getTransaction(id) {
-  const { userId } = await auth();
-  if (!userId) throw new Error("Unauthorized");
-
-  const user = await db.user.findUnique({
-    where: { clerkUserId: userId },
-  });
-
-  if (!user) throw new Error("User not found");
-
-  const transaction = await db.transaction.findUnique({
-    where: {
-      id,
-      userId: user.id,
-    },
-  });
-
-  if (!transaction) throw new Error("Transaction not found");
-
-  return serializeAmount(transaction);
+  try {
+    const transaction = await db.transaction.findUnique({
+      where: { id },
+    });
+    return transaction;
+  } catch (error) {
+    console.error('Error getting transaction:', error);
+    return null;
+  }
 }
 
 export async function updateTransaction(id, data) {
@@ -190,7 +181,8 @@ export async function updateTransaction(id, data) {
 
     return { success: true, data: serializeAmount(transaction) };
   } catch (error) {
-    throw new Error(error.message);
+    console.error('Error updating transaction:', error);
+    return { success: false, error: error.message };
   }
 }
 
