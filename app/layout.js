@@ -13,12 +13,7 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <ClerkProvider
-      appearance={{
-        baseTheme: undefined
-      }}
-      navigate={(to) => window.location.href = to}
-    >
+    <ClerkProvider>
       <html lang="en">
         <head>
           <link rel="icon" href="/logo-sm.png" sizes="any" />
