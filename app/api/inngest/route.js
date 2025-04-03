@@ -8,7 +8,8 @@ import {
   triggerRecurringTransactions,
 } from "@/lib/inngest/function";
 
-export const { GET, POST, PUT } = serve({
+// Add error handling middleware
+const handler = serve({
   client: inngest,
   functions: [
     processRecurringTransaction,
@@ -17,3 +18,40 @@ export const { GET, POST, PUT } = serve({
     checkBudgetAlerts,
   ],
 });
+
+// Wrap the handler with error handling
+export const GET = async (req) => {
+  try {
+    return await handler(req);
+  } catch (error) {
+    console.error("Inngest GET handler error:", error);
+    return new Response(JSON.stringify({ error: "Internal Server Error" }), {
+      status: 500,
+      headers: { "Content-Type": "application/json" },
+    });
+  }
+};
+
+export const POST = async (req) => {
+  try {
+    return await handler(req);
+  } catch (error) {
+    console.error("Inngest POST handler error:", error);
+    return new Response(JSON.stringify({ error: "Internal Server Error" }), {
+      status: 500,
+      headers: { "Content-Type": "application/json" },
+    });
+  }
+};
+
+export const PUT = async (req) => {
+  try {
+    return await handler(req);
+  } catch (error) {
+    console.error("Inngest PUT handler error:", error);
+    return new Response(JSON.stringify({ error: "Internal Server Error" }), {
+      status: 500,
+      headers: { "Content-Type": "application/json" },
+    });
+  }
+};
