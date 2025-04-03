@@ -4,11 +4,11 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "npm install --legacy-peer-deps && next build",
+    "build": "npm install --legacy-peer-deps && npx prisma generate && next build",
     "start": "next start",
     "lint": "next lint",
     "email": "email dev",
-    "postinstall": "prisma generate"
+    "postinstall": "npx prisma generate"
   },
   "dependencies": {
     "@arcjet/nest": "^1.0.0-beta.5",
@@ -37,6 +37,7 @@
     "next": "^14.1.0",
     "next-themes": "^0.4.3",
     "prettier": "^3.5.3",
+    "prisma": "^6.5.0",
     "react": "^18.2.0",
     "react-day-picker": "^8.10.1",
     "react-dom": "^18.2.0",
@@ -54,7 +55,6 @@
     "eslint": "^8",
     "eslint-config-next": "14.1.0",
     "postcss": "^8",
-    "prisma": "^6.5.0",
     "react-email": "^1.2.0",
     "tailwindcss": "^3.4.1"
   }
