@@ -83,8 +83,14 @@ export function AddTransactionForm({
 
   const onSubmit = (data) => {
     const formData = {
-      ...data,
+      type: data.type,
       amount: parseFloat(data.amount),
+      description: data.description || "",
+      accountId: data.accountId,
+      category: data.category,
+      date: data.date.toISOString(),
+      isRecurring: !!data.isRecurring,
+      recurringInterval: data.recurringInterval || null
     };
 
     if (editMode) {
